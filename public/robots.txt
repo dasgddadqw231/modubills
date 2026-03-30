@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# 주요 검색엔진 크롤러 명시적 허용
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+# Sitemap 위치
+Sitemap: https://www.modubills.com/sitemap.xml
