@@ -235,9 +235,9 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
             className="text-zinc-300 max-w-lg mb-8 sm:mb-10 text-[0.95rem] sm:text-[1.15rem]"
             style={{ lineHeight: 1.85 }}
           >
-            개원 준비부터 확장·리모델링까지.<br className="hidden sm:block" />
-            모두빌스 전담 컨설턴트가 병원 상황에 맞는{" "}
-            최적의 자금 솔루션을 제시합니다.
+            개원 준비부터 확장·리모델링까지. 모두빌스 전담 컨설턴트가 병원 상황에 맞는 최적의 자금 솔루션을
+            <br />
+            제시합니다.
           </motion.p>
 
           {/* CTAs — 모바일에서는 하단 고정바가 있으므로 CTA 숨김 */}

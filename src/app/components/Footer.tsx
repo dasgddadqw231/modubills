@@ -162,6 +162,7 @@ export function Footer() {
           </div>
           <p className="text-xs text-zinc-700 mt-3 leading-relaxed max-w-2xl">
             모두빌스는 「여신전문금융업법」에 의거하여 금융기관과의 공식 파트너십을 통해 자금 중개 서비스를 제공합니다.
+            <br />
             제공되는 금융상품은 고객의 신용상태 및 자격 요건에 따라 조건이 달라질 수 있습니다.
           </p>
         </div>

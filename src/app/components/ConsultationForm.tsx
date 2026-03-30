@@ -12,6 +12,10 @@ const serviceGroups = [
       "KT 병원 솔루션 구축사업",
       "렌탈백 (Rental-back)",
       "중고장비 매입",
+      "신탁 자금",
+      "KB 국민카드",
+      "신협 데일리론",
+      "수협 행복대출",
     ],
   },
   {
@@ -19,10 +23,6 @@ const serviceGroups = [
     options: [
       "임차보증금 담보상품",
       "카드매출 담보상품",
-      "신탁 자금",
-      "KB 국민카드",
-      "신협 데일리론",
-      "수협 행복대출",
     ],
   },
 ];
@@ -129,7 +129,10 @@ export const ConsultationForm = forwardRef<HTMLElement>((_, ref) => {
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-8 sm:mb-12">
               간단한 정보 입력으로 맞춤 자금 솔루션을 안내받으세요.
-              영업일 기준 <span className="text-white font-semibold">24시간 내</span> 전담 컨설턴트가 직접 연락드립니다.
+              <br />
+              영업일 기준
+              <br />
+              <span className="text-white font-semibold">24시간 내</span> 전담 컨설턴트가 직접 연락드립니다.
             </p>
 
             {/* Guarantees */}

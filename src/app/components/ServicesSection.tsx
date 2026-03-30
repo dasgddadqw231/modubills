@@ -642,7 +642,7 @@ export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
             transition={{ duration: 0.7, delay: 0.15 }}
           >
             <p className="text-zinc-500 text-base leading-relaxed mb-6">
-              비금융 8종 + 제휴 금융권 3종.<br />
+              비금융 9종 + 제휴 금융권 2종.<br />
               병원 상황에 따라 가장 유리한 상품이 다릅니다.<br />
               전담 컨설턴트가 최적 조합을 무료로 분석합니다.
             </p>

@@ -103,11 +103,13 @@ export function TestimonialsSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
+            whileHover={{ rotateY: -6, rotateX: 4, scale: 1.03 }}
+            style={{ perspective: 800 }}
           >
             <img
               src={cardImg}
               alt="모두빌스 명함 — 대표이사 박태서"
-              className="w-full rounded-lg shadow-2xl shadow-black/40"
+              className="w-full rounded-lg shadow-2xl shadow-black/40 transition-shadow duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
         </div>
