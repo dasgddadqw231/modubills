@@ -21,14 +21,16 @@ export default function App() {
       <SEOHead />
       <div className="min-h-screen bg-white">
         <Navbar onConsultClick={scrollToConsult} />
-        <HeroSection onConsultClick={scrollToConsult} />
-        <ServicesSection onConsultClick={scrollToConsult} />
-        <TrustSection />
-        <CaseStudiesSection />
-        <ProcessSection />
-        <ComparisonSection />
-        <TestimonialsSection />
-        <ConsultationForm />
+        <main>
+          <HeroSection onConsultClick={scrollToConsult} />
+          <ServicesSection onConsultClick={scrollToConsult} />
+          <TrustSection />
+          <CaseStudiesSection />
+          <ProcessSection />
+          <ComparisonSection />
+          <TestimonialsSection />
+          <ConsultationForm />
+        </main>
         <Footer />
 
         {/* Mobile bottom bar — safe area 대응 */}

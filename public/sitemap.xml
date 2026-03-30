@@ -5,7 +5,7 @@
   <!-- 메인 페이지 -->
   <url>
     <loc>https://www.modubills.com/</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,28 +13,28 @@
   <!-- 앵커 섹션 — 검색엔진이 딥링크로 인식 가능 -->
   <url>
     <loc>https://www.modubills.com/#services</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.modubills.com/#process</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.modubills.com/#cases</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.modubills.com/#consult</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
