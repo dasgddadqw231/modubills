@@ -122,10 +122,10 @@ export function TestimonialsSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-12 flex items-center gap-3">
+          <h2 className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-12 flex items-center gap-3 font-normal">
             <span className="w-6 h-px bg-zinc-300" />
             원장님들의 이야기
-          </p>
+          </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8">

@@ -130,7 +130,7 @@ export function TrustSection() {
                     <Icon className="w-4 h-4 text-sky-600 group-hover:text-white transition-colors" />
                   </div>
                   <div>
-                    <h4 className="text-zinc-900 font-semibold text-sm mb-1">{p.title}</h4>
+                    <h3 className="text-zinc-900 font-semibold text-sm mb-1">{p.title}</h3>
                     <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">{p.desc}</p>
                   </div>
                 </motion.div>
