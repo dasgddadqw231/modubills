@@ -279,15 +279,15 @@ function ServiceGroup({
   label,
   services,
   active,
-  setActive,
+  toggle,
   inView,
   indexOffset,
   onConsultClick,
 }: {
   label: string;
   services: ServiceItem[];
-  active: string | null;
-  setActive: (v: string | null) => void;
+  active: Set<string>;
+  toggle: (v: string) => void;
   inView: boolean;
   indexOffset: number;
   onConsultClick: () => void;
@@ -304,7 +304,7 @@ function ServiceGroup({
 
       <div className="border-t-2 border-zinc-950">
         {services.map((svc, i) => {
-          const isActive = active === svc.num;
+          const isActive = active.has(svc.num);
           return (
             <motion.div
               key={svc.num}
@@ -318,7 +318,7 @@ function ServiceGroup({
                   "w-full text-left py-5 sm:py-6 px-0 flex items-center gap-3 sm:gap-5 group transition-all active:bg-zinc-50",
                   isActive ? "bg-zinc-50 px-4 sm:px-6 -mx-4 sm:-mx-6" : "hover:bg-zinc-50/70 hover:px-6 hover:-mx-6"
                 )}
-                onClick={() => setActive(isActive ? null : svc.num)}
+                onClick={() => toggle(svc.num)}
               >
                 {/* Number */}
                 <span
@@ -602,7 +602,15 @@ function CoreAdvantages() {
    메인 섹션
 ──────────────────────────────────────────── */
 export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<Set<string>>(new Set());
+  const toggle = (num: string) => {
+    setActive((prev) => {
+      const next = new Set(prev);
+      if (next.has(num)) next.delete(num);
+      else next.add(num);
+      return next;
+    });
+  };
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -660,7 +668,7 @@ export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
           label="비금융 자금 솔루션"
           services={nonFinancialServices}
           active={active}
-          setActive={setActive}
+          toggle={toggle}
           inView={inView}
           indexOffset={0}
           onConsultClick={onConsultClick}
@@ -671,7 +679,7 @@ export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
           label="제휴 금융권 상품"
           services={financialServices}
           active={active}
-          setActive={setActive}
+          toggle={toggle}
           inView={inView}
           indexOffset={9}
           onConsultClick={onConsultClick}
