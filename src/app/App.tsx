@@ -7,6 +7,8 @@ import { CaseStudiesSection } from "./components/CaseStudiesSection";
 import { ProcessSection } from "./components/ProcessSection";
 import { ComparisonSection } from "./components/ComparisonSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
+import { YouTubeSection } from "./components/YouTubeSection";
+import { DocumentsSection } from "./components/DocumentsSection";
 import { ConsultationForm } from "./components/ConsultationForm";
 import { Footer } from "./components/Footer";
 
@@ -29,6 +31,8 @@ export default function App() {
           <ProcessSection />
           <ComparisonSection />
           <TestimonialsSection />
+          <YouTubeSection />
+          <DocumentsSection />
           <ConsultationForm />
         </main>
         <Footer />
