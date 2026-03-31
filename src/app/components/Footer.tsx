@@ -175,8 +175,22 @@ export function Footer() {
             © 2025 Modubills. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-zinc-600">
-            <span className="hover:text-zinc-400 cursor-pointer transition-colors">개인정보처리방침</span>
-            <span className="hover:text-zinc-400 cursor-pointer transition-colors">이용약관</span>
+            <a
+              href="https://www.instagram.com/modubills_official"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-400 transition-colors"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.facebook.com/share/18JdB8do7g/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-400 transition-colors"
+            >
+              Facebook
+            </a>
             <a
               href="https://blog.naver.com/modubills1102"
               target="_blank"
