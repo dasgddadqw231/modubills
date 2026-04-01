@@ -9,7 +9,7 @@ const pillars = [
   {
     icon: ShieldCheck,
     title: "공식 금융기관 파트너십",
-    desc: "KB국민카드·신협·하나캐피탈 등 주요 금융기관과의 공식 파트너십으로 안정적인 자금 조달 구조를 보장합니다.",
+    desc: "KB국민카드·하나카드·신한카드·신협·하나캐피탈 등 주요 금융기관과의 공식 파트너십으로 안정적인 자금 조달 구조를 보장합니다.",
   },
   {
     icon: Users,
@@ -28,7 +28,7 @@ const pillars = [
   },
 ];
 
-const partners = ["KB국민카드", "신협중앙회", "하나캐피탈", "우리금융캐피탈", "NH농협캐피탈", "BNK캐피탈"];
+const partners = ["KB국민카드", "하나카드", "신한카드", "신협중앙회", "하나캐피탈", "우리금융캐피탈", "NH농협캐피탈", "BNK캐피탈"];
 
 export function TrustSection() {
   const ref = useRef<HTMLElement>(null);

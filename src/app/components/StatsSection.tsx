@@ -98,7 +98,7 @@ export function StatsSection() {
       <div className="border-t border-zinc-800 py-3 sm:py-4 overflow-hidden">
         <div className="flex gap-6 sm:gap-12 animate-[marquee_20s_linear_infinite] whitespace-nowrap">
           {[...Array(3)].flatMap(() => [
-            "KB국민카드", "신협중앙회", "하나캐피탈", "우리금융캐피탈",
+            "KB국민카드", "하나카드", "신한카드", "신협중앙회", "하나캐피탈", "우리금융캐피탈",
             "NH농협캐피탈", "BNK캐피탈", "10년 전문 의료금융", "전국 서비스",
           ]).map((text, i) => (
             <span key={i} className="text-zinc-500 text-sm sm:text-base shrink-0">

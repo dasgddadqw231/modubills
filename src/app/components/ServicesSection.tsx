@@ -172,24 +172,25 @@ const nonFinancialServices = [
   },
   {
     num: "09",
-    title: "KB 국민카드",
+    title: "개인사업자 특별한도 상품",
     tag: "장비 필수",
-    badge: "국내 유일 초장기",
+    badge: "KB · 하나 · 신한",
     amount: "최대 2억",
     period: "최대 60개월",
     meta: [
       { label: "한도", value: "최대 2억" },
       { label: "기간", value: "최대 60개월" },
       { label: "대상", value: "개인사업자 전용" },
+      { label: "제휴은행", value: "KB · 하나 · 신한", highlight: true },
       { label: "특징", value: "정산일 결제후 D+5일" },
     ],
     points: [
+      "KB국민카드 · 하나카드 · 신한카드 제휴",
       "병원·약국 개인사업자 전용 (법인/재단 불가)",
       "최대 2억 / 최대 60개월",
       "정산일 결제 후 D+5일 입금",
-      "간편 심사 절차",
     ],
-    desc: "병원·약국 개인사업자 전용(법인/재단 불가) 상품입니다. 정산일 결제 후 D+5일 내 최대 2억을 지원받을 수 있으며 최대 60개월 분할이 가능합니다.",
+    desc: "KB국민카드·하나카드·신한카드와 제휴한 개인사업자 전용 특별한도 상품입니다. 정산일 결제 후 D+5일 내 최대 2억을 지원받을 수 있으며 최대 60개월 분할이 가능합니다.",
   },
 ];
 
@@ -496,6 +497,154 @@ function ServiceGroup({
 }
 
 /* ────────────────────────────────────────────
+   정책자금 상품 데이터
+──────────────────────────────────────────── */
+const policyFunds = [
+  {
+    name: "신용보증 재단",
+    desc: "지역 기반 병의원\n운전자금 중심 검토",
+    color: "from-sky-400 to-sky-500",
+  },
+  {
+    name: "기술보증기금",
+    desc: "기술성·성장성\n특화 구조 검토",
+    color: "from-sky-500 to-sky-600",
+  },
+  {
+    name: "소진공",
+    desc: "병원 직접 적용은 제한적\n단, 지역별 특화 자금지원",
+    color: "from-sky-400 to-blue-500",
+  },
+  {
+    name: "중진공",
+    desc: "법인형 성장 구조\nMSO/의료 재단 가능",
+    color: "from-blue-500 to-blue-600",
+  },
+];
+
+const policyStats = [
+  { stat: "5~40억", label: "병원별 최대한도" },
+  { stat: "150+", label: "지원 받은 병원수" },
+  { stat: "22억", label: "평균 승인 금액" },
+];
+
+/* ────────────────────────────────────────────
+   정책자금 소개 블록
+──────────────────────────────────────────── */
+function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => void; inView: boolean }) {
+  return (
+    <div className="mt-8 mb-16">
+      {/* Category label */}
+      <div className="flex items-center gap-4 mb-8">
+        <span className="text-xs tracking-[0.2em] uppercase text-zinc-400 font-medium">
+          정책자금 상품
+        </span>
+        <span className="flex-1 h-px bg-zinc-100" />
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+      >
+        {/* 헤더 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+              <span className="text-sm text-zinc-400">메디컬론 한도가 차있어도?</span>
+            </div>
+            <h3
+              className="text-zinc-950"
+              style={{
+                fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.04em",
+                lineHeight: 1.15,
+              }}
+            >
+              정책자금으로<br />
+              <span className="text-sky-600">추가 집행 가능</span>
+            </h3>
+          </div>
+          <div className="flex flex-col justify-end">
+            <p className="text-zinc-500 text-base leading-relaxed">
+              병원은 일반 소상공인 자금보다, 의료기관에 맞는<br className="hidden sm:inline" />
+              보증·은행·특화사업 구조로 접근해야 합니다.<br className="hidden sm:inline" />
+              마인드 스톤 솔루션이 최적 경로를 설계합니다.
+            </p>
+          </div>
+        </div>
+
+        {/* 정책자금 타임라인 */}
+        <div className="relative">
+          {/* 연결선 (데스크톱) */}
+          <div className="hidden md:block absolute top-[3.25rem] left-0 right-0 h-0.5 bg-gradient-to-r from-sky-200 via-sky-300 to-blue-300 z-0" />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 relative z-10">
+            {policyFunds.map((fund, i) => (
+              <motion.div
+                key={fund.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                className="flex flex-col items-center"
+              >
+                {/* 라벨 칩 */}
+                <div className={`bg-gradient-to-r ${fund.color} text-white text-sm font-bold px-5 py-2 rounded-full mb-4 shadow-sm`}>
+                  {fund.name}
+                </div>
+                {/* 노드 점 (데스크톱) */}
+                <div className="hidden md:block w-3 h-3 rounded-full bg-sky-500 border-2 border-white shadow mb-4" />
+                {/* 카드 */}
+                <div className="w-full bg-zinc-50 border border-zinc-100 rounded-xl p-5 text-center hover:shadow-md transition-shadow">
+                  <p className="text-sm text-zinc-600 leading-relaxed whitespace-pre-line">
+                    {fund.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* 통계 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4"
+        >
+          {policyStats.map((item) => (
+            <div
+              key={item.label}
+              className="bg-white border border-zinc-100 rounded-xl p-6 text-center"
+            >
+              <p className="text-zinc-400 text-sm mb-2">{item.label}</p>
+              <p
+                className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-emerald-500 font-extrabold"
+                style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)", letterSpacing: "-0.04em" }}
+              >
+                {item.stat}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTA */}
+        <div className="mt-8 text-center">
+          <button
+            onClick={onConsultClick}
+            className="inline-flex items-center gap-2 text-base font-semibold bg-zinc-950 text-white px-8 py-3.5 hover:bg-zinc-700 active:bg-zinc-800 transition-colors"
+          >
+            정책자금 가능 여부 무료 진단 받기
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────
    핵심 특장점 블록
 ──────────────────────────────────────────── */
 function CoreAdvantages() {
@@ -639,7 +788,7 @@ export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
                 lineHeight: 1.08,
               }}
             >
-              11가지<br />자금 솔루션
+              11가지 자금 솔루션<br />+ 정책자금
             </h2>
           </motion.div>
 
@@ -650,7 +799,7 @@ export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
             transition={{ duration: 0.7, delay: 0.15 }}
           >
             <p className="text-zinc-500 text-base leading-relaxed mb-6">
-              비금융 9종 + 제휴 금융권 2종.<br />
+              비금융 9종 + 제휴 금융권 2종 + 정책자금.<br />
               병원 상황에 따라 가장 유리한 상품이 다릅니다.<br />
               전담 컨설턴트가 최적 조합을 무료로 분석합니다.
             </p>
@@ -684,6 +833,9 @@ export function ServicesSection({ onConsultClick }: ServicesSectionProps) {
           indexOffset={9}
           onConsultClick={onConsultClick}
         />
+
+        {/* 정책자금 상품 소개 */}
+        <PolicyFundsSection onConsultClick={onConsultClick} inView={inView} />
       </div>
     </section>
   );

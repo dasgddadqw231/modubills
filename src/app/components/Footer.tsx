@@ -18,7 +18,7 @@ const nonFinancialServices = [
   "신탁 자금",
   "렌탈백 (Rental-back)",
   "중고장비 매입",
-  "KB 국민카드",
+  "개인사업자 특별한도",
 ];
 
 const financialServices = [
