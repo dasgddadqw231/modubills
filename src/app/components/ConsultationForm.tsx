@@ -107,6 +107,15 @@ export const ConsultationForm = forwardRef<HTMLElement>((_, ref) => {
       });
 
       setDone(true);
+
+      // GA4 전환 이벤트
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "generate_lead", {
+          event_category: "consultation",
+          event_label: form.services.join(", "),
+          value: 1,
+        });
+      }
     } catch {
       alert("문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
     } finally {
