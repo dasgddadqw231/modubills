@@ -128,11 +128,11 @@ export function TestimonialsSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8">
+        <div className="flex lg:grid lg:grid-cols-3 gap-4 lg:gap-8 overflow-x-auto lg:overflow-visible pb-3 lg:pb-0 scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              className="bg-white border border-zinc-100 p-5 sm:p-8 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="bg-white border border-zinc-100 p-5 sm:p-8 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 shrink-0 w-[280px] lg:w-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: 0.2 + i * 0.12 }}

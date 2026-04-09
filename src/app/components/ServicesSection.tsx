@@ -603,14 +603,14 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
 
         {/* 정책자금 6종 기관 */}
         <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 relative z-10">
+          <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 relative z-10 overflow-x-auto sm:overflow-visible pb-3 sm:pb-0 scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {policyFunds.map((fund, i) => (
               <motion.div
                 key={fund.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center shrink-0 w-[160px] sm:w-auto"
               >
                 {/* 라벨 칩 */}
                 <div className={`bg-gradient-to-r ${fund.color} text-white text-sm font-bold px-5 py-2 rounded-full mb-4 shadow-sm`}>
@@ -635,11 +635,11 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
           className="mt-10"
         >
           <h4 className="text-lg font-bold text-zinc-800 mb-4">자금 유형별 안내</h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="flex md:grid md:grid-cols-4 gap-3 overflow-x-auto md:overflow-visible pb-3 md:pb-0 scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {fundTypes.map((type) => (
               <div
                 key={type.name}
-                className="bg-white border border-zinc-100 rounded-xl p-5 text-center hover:shadow-md transition-shadow"
+                className="bg-white border border-zinc-100 rounded-xl p-5 text-center hover:shadow-md transition-shadow shrink-0 w-[160px] md:w-auto"
               >
                 <span className="text-2xl mb-2 block">{type.icon}</span>
                 <p className="text-sm font-bold text-zinc-800 mb-1">{type.name}</p>
@@ -660,14 +660,14 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
           <div className="relative">
             {/* 연결선 (데스크톱) */}
             <div className="hidden md:block absolute top-[2.75rem] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-sky-200 via-sky-300 to-blue-300 z-0" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 relative z-10">
+            <div className="flex md:grid md:grid-cols-5 gap-3 sm:gap-4 relative z-10 overflow-x-auto md:overflow-visible pb-3 md:pb-0 scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
               {policyProcess.map((item, i) => (
                 <motion.div
                   key={item.step}
                   initial={{ opacity: 0, y: 15 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.6 + i * 0.08 }}
-                  className="flex flex-col items-center text-center"
+                  className="flex flex-col items-center text-center shrink-0 w-[130px] md:w-auto"
                 >
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white text-sm font-bold flex items-center justify-center mb-3 shadow-sm">
                     {item.step}
@@ -685,12 +685,13 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4"
+          className="mt-10 flex sm:grid sm:grid-cols-3 gap-3 sm:gap-4 overflow-x-auto sm:overflow-visible pb-3 sm:pb-0 scrollbar-none"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {policyStats.map((item) => (
             <div
               key={item.label}
-              className="bg-white border border-zinc-100 rounded-xl p-6 text-center"
+              className="bg-white border border-zinc-100 rounded-xl p-5 sm:p-6 text-center shrink-0 w-[200px] sm:w-auto"
             >
               <p className="text-zinc-400 text-sm mb-2">{item.label}</p>
               <p

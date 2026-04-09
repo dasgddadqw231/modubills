@@ -84,11 +84,11 @@ export function CaseStudiesSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-zinc-800">
+        <div className="flex lg:grid lg:grid-cols-3 gap-3 lg:gap-px lg:bg-zinc-800 overflow-x-auto lg:overflow-visible pb-3 lg:pb-0 scrollbar-none" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           {cases.map((c, i) => (
             <motion.div
               key={c.region}
-              className="bg-zinc-950 flex flex-col group overflow-hidden"
+              className="bg-zinc-950 flex flex-col group overflow-hidden shrink-0 w-[300px] lg:w-auto border border-zinc-800 lg:border-0"
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 + i * 0.12 }}

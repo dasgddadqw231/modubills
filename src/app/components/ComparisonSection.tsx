@@ -155,7 +155,8 @@ export function ComparisonSection() {
 
         {/* Bottom benefits */}
         <motion.div
-          className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-0 border border-zinc-800"
+          className="mt-16 flex sm:grid sm:grid-cols-3 gap-0 border border-zinc-800 overflow-x-auto sm:overflow-visible scrollbar-none"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -167,7 +168,7 @@ export function ComparisonSection() {
           ].map((b, i) => (
             <div
               key={b.title}
-              className={cn("p-4 sm:p-8 lg:p-10", i !== 0 ? "border-t sm:border-t-0 sm:border-l border-zinc-800" : "")}
+              className={cn("p-4 sm:p-8 lg:p-10 shrink-0 w-[200px] sm:w-auto", i !== 0 ? "border-l sm:border-l border-zinc-800" : "")}
             >
               <p
                 className="text-white font-black mb-2"
