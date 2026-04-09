@@ -8,6 +8,12 @@ import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from
 import { resolve, join, extname } from "path";
 import puppeteer from "puppeteer";
 
+// Vercel 등 CI 환경에서는 Puppeteer 실행 불가 → 건너뛰기
+if (process.env.VERCEL || process.env.CI) {
+  console.log("⏭️  CI 환경 감지 — 프리렌더링 건너뜀");
+  process.exit(0);
+}
+
 const DIST = resolve("dist");
 const PORT = 45678;
 const ROUTES = ["/"];          // 프리렌더링할 경로 (대시보드는 SEO 불필요)
