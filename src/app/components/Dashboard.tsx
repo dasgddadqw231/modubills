@@ -590,28 +590,6 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* 바운스율 카드 */}
-        <Card className="border-zinc-200/80 shadow-none">
-          <CardHeader className="pb-0 pt-4 px-4 gap-0">
-            <CardTitle className="text-sm font-semibold text-zinc-800">이탈률</CardTitle>
-          </CardHeader>
-          <CardContent className="px-4 pb-4 pt-3">
-            {loading ? (
-              <Skeleton className="h-12 w-full" />
-            ) : (
-              <div className="flex items-end gap-3">
-                <span className="text-3xl font-bold text-zinc-900">
-                  {Math.round((todayStats?.bounceRate ?? 0) * 100)}%
-                </span>
-                <ChangeIndicator
-                  curr={(todayStats?.bounceRate ?? 0) * 100}
-                  prev={(yesterdayStats?.bounceRate ?? 0) * 100}
-                  invert
-                />
-              </div>
-            )}
-          </CardContent>
-        </Card>
       </main>
     </div>
   );

@@ -506,19 +506,29 @@ const policyFunds = [
     color: "from-sky-400 to-sky-500",
   },
   {
-    name: "기술보증기금",
-    desc: "기술성·성장성\n특화 구조 검토",
+    name: "신용보증 기금",
+    desc: "중소기업 신용보증 전문\n대출 보증서 발급 지원",
     color: "from-sky-500 to-sky-600",
   },
   {
-    name: "소진공",
-    desc: "병원 직접 적용은 제한적\n단, 지역별 특화 자금지원",
+    name: "기술보증 재단",
+    desc: "지역 기술기업 대상\n기술평가 기반 보증 지원",
     color: "from-sky-400 to-blue-500",
   },
   {
-    name: "중진공",
-    desc: "법인형 성장 구조\nMSO/의료 재단 가능",
+    name: "기술보증기금",
+    desc: "기술성·성장성\n특화 구조 검토",
     color: "from-blue-500 to-blue-600",
+  },
+  {
+    name: "중소기업 벤처부",
+    desc: "중소기업 정책자금\n직접 대출·융자 지원",
+    color: "from-blue-400 to-indigo-500",
+  },
+  {
+    name: "지자체 및 지역 신보",
+    desc: "지자체 협약자금\n지역 특화 자금 지원",
+    color: "from-indigo-400 to-indigo-600",
   },
 ];
 
@@ -526,6 +536,21 @@ const policyStats = [
   { stat: "5~40억", label: "병원별 최대한도" },
   { stat: "150+", label: "지원 받은 병원수" },
   { stat: "22억", label: "평균 승인 금액" },
+];
+
+const policyProcess = [
+  { step: "01", title: "상담 및 접수", desc: "기업 현황과 자금 수요를\n기초적으로 확인합니다." },
+  { step: "02", title: "정밀 진단", desc: "재무상태, 신용도, 업종 특성,\n기존 차입 구조를 분석합니다." },
+  { step: "03", title: "가능성 검토", desc: "기관별 지원 가능 여부와\n예상 한도, 적합 상품을 검토합니다." },
+  { step: "04", title: "맞춤 전략 설계", desc: "최적의 자금 조달 구조와\n진행 방향을 제안합니다." },
+  { step: "05", title: "실행 지원", desc: "서류 준비, 접수, 심사 대응,\n승인 및 실행까지 지원합니다." },
+];
+
+const fundTypes = [
+  { name: "시설자금", desc: "공사 견적서, 공사내역서, 시공 계약서, 임대차계약서 등", icon: "🏗️" },
+  { name: "장비자금", desc: "장비 견적서, 발주서, 제품 설명자료", icon: "⚙️" },
+  { name: "운전자금", desc: "자금사용계획서, 매출추이자료, 입출금내역", icon: "💰" },
+  { name: "보증연계", desc: "보증신청 관련 확인서류, 기존 금융거래 자료", icon: "🛡️" },
 ];
 
 /* ────────────────────────────────────────────
@@ -576,26 +601,21 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
           </div>
         </div>
 
-        {/* 정책자금 타임라인 */}
+        {/* 정책자금 6종 기관 */}
         <div className="relative">
-          {/* 연결선 (데스크톱) */}
-          <div className="hidden md:block absolute top-[3.25rem] left-0 right-0 h-0.5 bg-gradient-to-r from-sky-200 via-sky-300 to-blue-300 z-0" />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 relative z-10">
             {policyFunds.map((fund, i) => (
               <motion.div
                 key={fund.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
                 className="flex flex-col items-center"
               >
                 {/* 라벨 칩 */}
                 <div className={`bg-gradient-to-r ${fund.color} text-white text-sm font-bold px-5 py-2 rounded-full mb-4 shadow-sm`}>
                   {fund.name}
                 </div>
-                {/* 노드 점 (데스크톱) */}
-                <div className="hidden md:block w-3 h-3 rounded-full bg-sky-500 border-2 border-white shadow mb-4" />
                 {/* 카드 */}
                 <div className="w-full bg-zinc-50 border border-zinc-100 rounded-xl p-5 text-center hover:shadow-md transition-shadow">
                   <p className="text-sm text-zinc-600 leading-relaxed whitespace-pre-line">
@@ -607,11 +627,64 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
           </div>
         </div>
 
+        {/* 자금 유형 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-10"
+        >
+          <h4 className="text-lg font-bold text-zinc-800 mb-4">자금 유형별 안내</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {fundTypes.map((type) => (
+              <div
+                key={type.name}
+                className="bg-white border border-zinc-100 rounded-xl p-5 text-center hover:shadow-md transition-shadow"
+              >
+                <span className="text-2xl mb-2 block">{type.icon}</span>
+                <p className="text-sm font-bold text-zinc-800 mb-1">{type.name}</p>
+                <p className="text-xs text-zinc-500 leading-relaxed">{type.desc}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 맞춤형 진단 프로세스 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="mt-10"
+        >
+          <h4 className="text-lg font-bold text-zinc-800 mb-4">맞춤형 진단 프로세스</h4>
+          <div className="relative">
+            {/* 연결선 (데스크톱) */}
+            <div className="hidden md:block absolute top-[2.75rem] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-sky-200 via-sky-300 to-blue-300 z-0" />
+            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4 relative z-10">
+              {policyProcess.map((item, i) => (
+                <motion.div
+                  key={item.step}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.6 + i * 0.08 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white text-sm font-bold flex items-center justify-center mb-3 shadow-sm">
+                    {item.step}
+                  </div>
+                  <p className="text-sm font-bold text-zinc-800 mb-1">{item.title}</p>
+                  <p className="text-xs text-zinc-500 leading-relaxed whitespace-pre-line">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
         {/* 통계 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4"
         >
           {policyStats.map((item) => (
