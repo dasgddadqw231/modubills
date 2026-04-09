@@ -111,10 +111,10 @@ export function DocumentsSection() {
         </motion.div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-10">
           {/* Business docs */}
           <motion.div
-            className="bg-zinc-50 rounded-xl p-6 sm:p-8"
+            className="bg-zinc-50 rounded-xl p-4 sm:p-8"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -136,7 +136,7 @@ export function DocumentsSection() {
 
           {/* Personal docs */}
           <motion.div
-            className="bg-zinc-50 rounded-xl p-6 sm:p-8"
+            className="bg-zinc-50 rounded-xl p-4 sm:p-8"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

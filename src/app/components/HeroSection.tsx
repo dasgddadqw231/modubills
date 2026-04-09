@@ -186,7 +186,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
       />
 
       {/* ── Main content ─────────────────────── */}
-      <div className="relative z-10 flex flex-col flex-1 max-w-7xl mx-auto w-full pl-6 pr-5 sm:pl-14 sm:pr-8 lg:pl-24 lg:pr-16 pt-20 sm:pt-24 pb-0">
+      <div className="relative z-10 flex flex-col flex-1 max-w-7xl mx-auto w-full pl-4 pr-4 sm:pl-14 sm:pr-8 lg:pl-24 lg:pr-16 pt-16 sm:pt-24 pb-0">
 
         <motion.div
           variants={staggerContainer}
@@ -195,7 +195,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
           className="flex-1"
         >
           {/* Eyebrow */}
-          <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6 sm:mb-10">
+          <motion.div variants={fadeUp} className="flex items-center gap-3 mb-4 sm:mb-10">
             <span className="block w-6 h-px bg-sky-500" />
             <p className="text-sky-400 text-xs tracking-[0.3em] uppercase">
               의료장비렌탈 &amp; 병원금융 전문
@@ -215,7 +215,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
           >
             병원
             {/* Cycling word */}
-            <span className="inline-block mx-3 relative">
+            <span className="inline-block mx-1.5 sm:mx-3 relative">
               <motion.span
                 key={wordIndex}
                 className="text-sky-400 inline-block"
@@ -232,7 +232,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
 
           <motion.p
             variants={fadeUp}
-            className="text-zinc-300 max-w-lg mb-8 sm:mb-10 text-[0.95rem] sm:text-[1.15rem]"
+            className="text-zinc-300 max-w-lg mb-6 sm:mb-10 text-[0.85rem] sm:text-[1.15rem]"
             style={{ lineHeight: 1.85 }}
           >
             개원 준비부터 확장·리모델링까지. 모두빌스 전담 컨설턴트가 병원 상황에 맞는 최적의 자금 솔루션을
@@ -241,7 +241,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
           </motion.p>
 
           {/* SNS icons */}
-          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
+          <motion.div variants={fadeUp} className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
             <a
               href="https://www.instagram.com/modubills_official"
               target="_blank"
@@ -340,7 +340,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
                 <button
                   key={s.id}
                   onClick={() => setActiveTab(i)}
-                  className="relative flex-shrink-0 min-w-[100px] sm:min-w-[140px] text-left px-4 sm:px-6 py-4 sm:py-5 transition-colors group"
+                  className="relative flex-shrink-0 min-w-[72px] sm:min-w-[140px] text-left px-3 sm:px-6 py-3 sm:py-5 transition-colors group"
                 >
                   {/* Active indicator line */}
                   {activeTab === i && (
@@ -353,7 +353,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
                   <p className={`text-xs mb-1.5 transition-colors ${activeTab === i ? "text-sky-400" : "text-zinc-500"}`}>
                     {s.tag}
                   </p>
-                  <p className={`text-base font-medium transition-colors whitespace-nowrap ${activeTab === i ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"}`}>
+                  <p className={`text-sm sm:text-base font-medium transition-colors whitespace-nowrap ${activeTab === i ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"}`}>
                     {s.title}
                   </p>
                 </button>
@@ -399,7 +399,7 @@ export function HeroSection({ onConsultClick }: HeroSectionProps) {
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
-                className={`py-5 sm:py-7 ${i !== 0 ? "sm:border-l sm:pl-8" : ""} ${i >= 2 ? "border-t sm:border-t-0" : ""} ${i % 2 !== 0 ? "border-l pl-5 sm:pl-8" : ""} border-white/12 group cursor-default`}
+                className={`py-4 sm:py-7 ${i !== 0 ? "sm:border-l sm:pl-8" : ""} ${i >= 2 ? "border-t sm:border-t-0" : ""} ${i % 2 !== 0 ? "border-l pl-4 sm:pl-8" : ""} border-white/12 group cursor-default`}
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
               >

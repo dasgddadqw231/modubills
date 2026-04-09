@@ -123,7 +123,7 @@ export function Navbar({ onConsultClick }: NavbarProps) {
                   key={l.href}
                   onClick={() => { scrollTo(l.href); setMenuOpen(false); }}
                   className="block w-full text-left py-4 border-b border-zinc-50 text-zinc-800 font-semibold"
-                  style={{ fontSize: "1.4rem", letterSpacing: "-0.025em" }}
+                  style={{ fontSize: "clamp(1.1rem, 4vw, 1.4rem)", letterSpacing: "-0.025em" }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 + i * 0.07 }}

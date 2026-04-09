@@ -259,7 +259,7 @@ export const ConsultationForm = forwardRef<HTMLElement>((_, ref) => {
                 기본 정보를 입력해주세요
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mb-5">
                 {/* Name */}
                 <div>
                   <label className="block text-sm text-zinc-500 mb-2">
@@ -345,7 +345,7 @@ export const ConsultationForm = forwardRef<HTMLElement>((_, ref) => {
                             type="button"
                             onClick={() => toggleService(s)}
                             className={cn(
-                              "text-sm px-3.5 sm:px-4 py-2.5 border transition-colors active:scale-95",
+                              "text-xs sm:text-sm px-2.5 sm:px-4 py-2 sm:py-2.5 border transition-colors active:scale-95",
                               form.services.includes(s)
                                 ? "border-zinc-950 bg-zinc-950 text-white"
                                 : "border-zinc-200 text-zinc-600 hover:border-zinc-400"

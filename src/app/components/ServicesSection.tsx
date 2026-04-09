@@ -437,7 +437,7 @@ function ServiceGroup({
 
                       {/* 신규렌탈 연 회수율 테이블 (02번 전용) */}
                       {svc.num === "02" && (
-                        <div className="mt-10 border border-dashed border-sky-200 rounded-lg p-6 bg-sky-50/30">
+                        <div className="mt-8 sm:mt-10 border border-dashed border-sky-200 rounded-lg p-4 sm:p-6 bg-sky-50/30">
                           <div className="flex items-center gap-3 mb-5">
                             <span className="text-[11px] bg-sky-600 text-white px-2 py-0.5 rounded font-semibold tracking-widest">
                               RATE TABLE
@@ -603,7 +603,7 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
 
         {/* 정책자금 6종 기관 */}
         <div className="relative">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 relative z-10">
             {policyFunds.map((fund, i) => (
               <motion.div
                 key={fund.name}
@@ -660,7 +660,7 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
           <div className="relative">
             {/* 연결선 (데스크톱) */}
             <div className="hidden md:block absolute top-[2.75rem] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-sky-200 via-sky-300 to-blue-300 z-0" />
-            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4 relative z-10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 relative z-10">
               {policyProcess.map((item, i) => (
                 <motion.div
                   key={item.step}
@@ -724,7 +724,7 @@ function CoreAdvantages() {
   return (
     <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* 핵심 특장점 */}
-      <div className="border-2 border-sky-100 rounded-2xl p-8 bg-gradient-to-br from-sky-50/60 to-white">
+      <div className="border-2 border-sky-100 rounded-2xl p-5 sm:p-8 bg-gradient-to-br from-sky-50/60 to-white">
         <div className="flex items-center gap-3 mb-7">
           <span className="w-10 h-10 bg-sky-600 rounded-xl flex items-center justify-center shrink-0">
             <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -773,7 +773,7 @@ function CoreAdvantages() {
       </div>
 
       {/* 신규렌탈 연 회수율 요약 */}
-      <div className="border border-dashed border-sky-200 rounded-2xl p-8 bg-white">
+      <div className="border border-dashed border-sky-200 rounded-2xl p-5 sm:p-8 bg-white">
         <div className="flex items-center gap-3 mb-6">
           <span className="text-[11px] bg-sky-600 text-white px-2.5 py-1 rounded font-semibold tracking-widest">
             RATE TABLE

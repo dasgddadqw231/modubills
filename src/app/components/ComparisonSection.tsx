@@ -167,7 +167,7 @@ export function ComparisonSection() {
           ].map((b, i) => (
             <div
               key={b.title}
-              className={cn("p-6 sm:p-8 lg:p-10", i !== 0 ? "border-t sm:border-t-0 sm:border-l border-zinc-800" : "")}
+              className={cn("p-4 sm:p-8 lg:p-10", i !== 0 ? "border-t sm:border-t-0 sm:border-l border-zinc-800" : "")}
             >
               <p
                 className="text-white font-black mb-2"

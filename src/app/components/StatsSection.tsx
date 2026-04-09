@@ -29,13 +29,13 @@ function StatItem({ s, animate, i }: { s: typeof stats[0]; animate: boolean; i: 
   const n = useCountUp(s.value, 1600 + i * 60, animate);
   return (
     <motion.div
-      className="relative flex flex-col justify-between py-7 px-5 sm:py-12 sm:px-10 border-zinc-800"
+      className="relative flex flex-col justify-between py-5 px-3.5 sm:py-12 sm:px-10 border-zinc-800"
       initial={{ opacity: 0, y: 30 }}
       animate={animate ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: i * 0.12 }}
     >
       {/* Decorative index */}
-      <span className="text-zinc-600 text-sm sm:text-base font-mono mb-3 sm:mb-6">
+      <span className="text-zinc-600 text-xs sm:text-base font-mono mb-2 sm:mb-6">
         {String(i + 1).padStart(2, "0")}
       </span>
 
@@ -86,7 +86,7 @@ export function StatsSection() {
       </div>
 
       {/* Stats grid */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4">
         <div className="grid grid-cols-2 lg:grid-cols-4 [&>*:nth-child(odd)]:border-r [&>*:nth-child(n+3)]:border-t lg:[&>*:nth-child(odd)]:border-r-0 lg:[&>*:nth-child(n+3)]:border-t-0 lg:[&>*:not(:last-child)]:border-r border-zinc-800">
           {stats.map((s, i) => (
             <StatItem key={s.label} s={s} animate={animate} i={i} />

@@ -41,8 +41,8 @@ export function TestimonialsSection() {
     <section id="testimonials" className="bg-zinc-50 overflow-hidden" ref={ref}>
 
       {/* ── Giant pullquote banner ──────────────────────────── */}
-      <div className="bg-zinc-950 py-12 sm:py-20 px-5 sm:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-20">
+      <div className="bg-zinc-950 py-10 sm:py-20 px-4 sm:px-8 lg:px-16">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-12 lg:gap-20">
           {/* Left — quote + stats */}
           <div className="flex-1 min-w-0">
             <motion.div
@@ -99,7 +99,7 @@ export function TestimonialsSection() {
 
           {/* Right — business card */}
           <motion.div
-            className="flex-shrink-0 w-full lg:w-[540px]"
+            className="flex-shrink-0 w-full max-w-md lg:max-w-none lg:w-[540px]"
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}

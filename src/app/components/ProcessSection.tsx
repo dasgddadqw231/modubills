@@ -103,7 +103,7 @@ export function ProcessSection() {
                   <div className="sm:col-span-2 lg:col-span-1 shrink-0">
                     <span
                       className="text-zinc-150 font-black tabular-nums block group-hover:text-sky-100 transition-colors"
-                      style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.06em", lineHeight: 1, color: "#e2e8f0" }}
+                      style={{ fontSize: "clamp(1.5rem, 3.5vw, 3.5rem)", letterSpacing: "-0.06em", lineHeight: 1, color: "#e2e8f0" }}
                     >
                       {step.num}
                     </span>
@@ -122,7 +122,7 @@ export function ProcessSection() {
                 </div>
 
                 {/* Right: sub + detail */}
-                <div className="sm:col-span-12 lg:col-span-5 lg:flex lg:items-center lg:justify-end gap-6 pl-[calc(2rem+0.75rem)] sm:pl-0 mt-2 sm:mt-0">
+                <div className="sm:col-span-12 lg:col-span-5 lg:flex lg:items-center lg:justify-end gap-6 pl-[calc(1.5rem+0.75rem)] sm:pl-0 mt-2 sm:mt-0">
                   <div className="flex sm:flex-row lg:flex-col items-center lg:items-end gap-2 sm:gap-4 lg:gap-2 sm:text-right">
                     <span className="text-xs text-zinc-400 border border-zinc-200 px-2.5 sm:px-3 py-1 sm:py-1.5 whitespace-nowrap">
                       {step.sub}
@@ -143,7 +143,7 @@ export function ProcessSection() {
           transition={{ duration: 0.7, delay: 0.7 }}
         >
           {/* Left: phone */}
-          <div className="p-6 sm:p-10 border-b md:border-b-0 md:border-r border-zinc-800">
+          <div className="p-4 sm:p-10 border-b md:border-b-0 md:border-r border-zinc-800">
             <p className="text-zinc-500 text-sm mb-2 uppercase tracking-widest">전화 문의</p>
             <a
               href="tel:010-9892-1927"
@@ -156,7 +156,7 @@ export function ProcessSection() {
           </div>
 
           {/* Right: online */}
-          <div className="p-6 sm:p-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <div className="p-4 sm:p-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
             <a
               href="#consult"
               onClick={(e) => {
