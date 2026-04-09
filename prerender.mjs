@@ -1,97 +1,117 @@
 /**
- * 빌드 후 프리렌더링 스크립트
- * - dist/index.html을 Puppeteer로 렌더링하여 정적 HTML로 교체
- * - 네이버 Yeti, 구글봇 등 JS 미실행 크롤러가 콘텐츠를 인덱싱할 수 있도록 함
+ * 빌드 후 SSR 프리렌더링 스크립트
+ * - Puppeteer 없이 react-dom/server + jsdom으로 정적 HTML 생성
+ * - Vercel, CI 등 어떤 환경에서든 동작
  */
-import { createServer } from "http";
-import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from "fs";
-import { resolve, join, extname } from "path";
-import puppeteer from "puppeteer";
-
-// Vercel 등 CI 환경에서는 Puppeteer 실행 불가 → 건너뛰기
-if (process.env.VERCEL || process.env.CI) {
-  console.log("⏭️  CI 환경 감지 — 프리렌더링 건너뜀");
-  process.exit(0);
-}
+import { build } from "vite";
+import { readFileSync, writeFileSync, rmSync } from "fs";
+import { resolve, join } from "path";
+import { pathToFileURL } from "url";
+import { JSDOM } from "jsdom";
 
 const DIST = resolve("dist");
-const PORT = 45678;
-const ROUTES = ["/"];          // 프리렌더링할 경로 (대시보드는 SEO 불필요)
+const SERVER_DIR = resolve("dist-server");
 
-// ── 간이 정적 파일 서버 ──
-const MIME = {
-  ".html": "text/html",
-  ".js":   "application/javascript",
-  ".css":  "text/css",
-  ".json": "application/json",
-  ".png":  "image/png",
-  ".jpg":  "image/jpeg",
-  ".svg":  "image/svg+xml",
-  ".woff2":"font/woff2",
-  ".woff": "font/woff",
-  ".webmanifest": "application/manifest+json",
-};
+async function prerender() {
+  console.log("🔧 SSR 프리렌더링 시작...");
 
-function startServer() {
-  return new Promise((ok) => {
-    const srv = createServer((req, res) => {
-      let filePath = join(DIST, req.url === "/" ? "index.html" : req.url);
-      if (!existsSync(filePath)) filePath = join(DIST, "index.html"); // SPA fallback
-      const ext = extname(filePath);
-      res.writeHead(200, { "Content-Type": MIME[ext] || "application/octet-stream" });
-      res.end(readFileSync(filePath));
-    });
-    srv.listen(PORT, () => ok(srv));
+  // 1. SSR 번들 빌드
+  console.log("  → 서버 번들 빌드...");
+  await build({
+    build: {
+      ssr: resolve("src/entry-server.tsx"),
+      outDir: SERVER_DIR,
+      emptyOutDir: true,
+    },
+    logLevel: "warn",
   });
+
+  // 2. jsdom으로 브라우저 환경 시뮬레이션
+  setupBrowserEnvironment();
+
+  // 3. SSR 번들 로드 & 렌더링
+  console.log("  → / 렌더링...");
+  const entryPath = pathToFileURL(join(SERVER_DIR, "entry-server.js")).href;
+  const { render } = await import(entryPath);
+  const appHtml = render("/");
+
+  // 4. dist/index.html에 삽입
+  const template = readFileSync(join(DIST, "index.html"), "utf-8");
+  const finalHtml = template.replace(
+    '<div id="root"></div>',
+    `<div id="root">${appHtml}</div>`
+  );
+  writeFileSync(join(DIST, "index.html"), finalHtml, "utf-8");
+  console.log("  ✅ dist/index.html (프리렌더링 완료)");
+
+  // 5. 서버 번들 정리
+  rmSync(SERVER_DIR, { recursive: true, force: true });
+
+  console.log("🎉 SSR 프리렌더링 완료!");
 }
 
-// ── 프리렌더링 ──
-async function prerender() {
-  console.log("🔧 프리렌더링 시작...");
-  const server = await startServer();
+function setupBrowserEnvironment() {
+  const dom = new JSDOM(
+    '<!DOCTYPE html><html lang="ko"><head></head><body></body></html>',
+    { url: "https://www.modubills.com", pretendToBeVisual: true }
+  );
+  const win = dom.window;
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
-
-  for (const route of ROUTES) {
-    console.log(`  → ${route} 렌더링 중...`);
-    const page = await browser.newPage();
-    await page.goto(`http://localhost:${PORT}${route}`, {
-      waitUntil: "networkidle0",
-      timeout: 30000,
-    });
-
-    // 추가 대기: 애니메이션/동적 콘텐츠 로드
-    await page.waitForSelector("#root > *", { timeout: 10000 });
-    await new Promise((r) => setTimeout(r, 1500));
-
-    // 렌더링된 HTML 추출
-    const html = await page.content();
-
-    // 파일 경로 결정
-    const outDir = route === "/" ? DIST : join(DIST, route);
-    if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
-    const outFile = join(outDir, "index.html");
-
-    writeFileSync(outFile, html, "utf-8");
-    console.log(`  ✅ ${outFile}`);
-
-    await page.close();
+  // 기본 DOM 전역 복사 (getter-only 속성은 defineProperty로 덮어쓰기)
+  const globals = [
+    "document", "navigator", "location", "history",
+    "HTMLElement", "SVGElement", "Element", "Node", "Text",
+    "DocumentFragment", "CustomEvent", "Event", "MouseEvent",
+    "KeyboardEvent", "MutationObserver", "DOMParser",
+    "getComputedStyle", "localStorage", "sessionStorage",
+  ];
+  for (const key of globals) {
+    if (win[key] !== undefined) {
+      Object.defineProperty(globalThis, key, {
+        value: win[key],
+        writable: true,
+        configurable: true,
+      });
+    }
   }
+  globalThis.window = globalThis;
+  // globalThis에 이벤트 리스너 메서드 추가 (motion 라이브러리 등에서 필요)
+  const noop = () => {};
+  if (!globalThis.addEventListener) globalThis.addEventListener = noop;
+  if (!globalThis.removeEventListener) globalThis.removeEventListener = noop;
+  if (!globalThis.dispatchEvent) globalThis.dispatchEvent = noop;
 
-  await browser.close();
-  server.close();
-
-  // GitHub Pages SPA fallback: 404.html = index.html 복사
-  // /dashboard 등 서브경로 직접 접근 시 404.html이 서빙되어 React Router가 처리
-  const src404 = join(DIST, "index.html");
-  const dst404 = join(DIST, "404.html");
-  copyFileSync(src404, dst404);
-  console.log(`  ✅ ${dst404} (SPA fallback)`);
-
-  console.log("🎉 프리렌더링 완료!");
+  // jsdom에 없는 API 모킹
+  globalThis.IntersectionObserver = class {
+    constructor() {}
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+  globalThis.ResizeObserver = class {
+    constructor() {}
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+  globalThis.matchMedia = () => ({
+    matches: false,
+    addEventListener: noop,
+    removeEventListener: noop,
+    addListener: noop,
+    removeListener: noop,
+    media: "",
+  });
+  globalThis.requestAnimationFrame = (cb) => setTimeout(cb, 0);
+  globalThis.cancelAnimationFrame = clearTimeout;
+  globalThis.scrollTo = noop;
+  globalThis.scroll = noop;
+  globalThis.CSS = { supports: () => false };
+  globalThis.screen = { width: 1920, height: 1080 };
+  globalThis.innerWidth = 1920;
+  globalThis.innerHeight = 1080;
+  globalThis.devicePixelRatio = 1;
+  globalThis.customElements = { define: noop, get: () => undefined };
 }
 
 prerender().catch((err) => {
