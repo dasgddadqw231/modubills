@@ -547,7 +547,7 @@ const policyProcess = [
 ];
 
 const fundTypes = [
-  { name: "시설자금", desc: "공사 견적서, 공사내역서, 시공 계약서, 임대차계약서 등", icon: "🏗️" },
+  { name: "시설자금", desc: "공사 견적서, 공사내역서, 시공 계약서,\n임대차계약서 등", icon: "🏗️" },
   { name: "장비자금", desc: "장비 견적서, 발주서, 제품 설명자료", icon: "⚙️" },
   { name: "운전자금", desc: "자금사용계획서, 매출추이자료, 입출금내역", icon: "💰" },
   { name: "보증연계", desc: "보증신청 관련 확인서류, 기존 금융거래 자료", icon: "🛡️" },
@@ -596,7 +596,7 @@ function PolicyFundsSection({ onConsultClick, inView }: { onConsultClick: () => 
             <p className="text-zinc-500 text-base leading-relaxed">
               병원은 일반 소상공인 자금보다, 의료기관에 맞는<br className="hidden sm:inline" />
               보증·은행·특화사업 구조로 접근해야 합니다.<br className="hidden sm:inline" />
-              마인드 스톤 솔루션이 최적 경로를 설계합니다.
+              모두빌스가 최적 경로를 설계합니다.
             </p>
           </div>
         </div>
