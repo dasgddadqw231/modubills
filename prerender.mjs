@@ -4,7 +4,7 @@
  * - 네이버 Yeti, 구글봇 등 JS 미실행 크롤러가 콘텐츠를 인덱싱할 수 있도록 함
  */
 import { createServer } from "http";
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from "fs";
 import { resolve, join, extname } from "path";
 import puppeteer from "puppeteer";
 
@@ -77,6 +77,14 @@ async function prerender() {
 
   await browser.close();
   server.close();
+
+  // GitHub Pages SPA fallback: 404.html = index.html 복사
+  // /dashboard 등 서브경로 직접 접근 시 404.html이 서빙되어 React Router가 처리
+  const src404 = join(DIST, "index.html");
+  const dst404 = join(DIST, "404.html");
+  copyFileSync(src404, dst404);
+  console.log(`  ✅ ${dst404} (SPA fallback)`);
+
   console.log("🎉 프리렌더링 완료!");
 }
 
