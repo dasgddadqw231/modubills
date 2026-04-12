@@ -302,7 +302,10 @@ export function Dashboard() {
           )}
         </div>
 
-        {/* 오늘 개요 카드 */}
+        {/* 오늘(일일) 개요 카드 */}
+        <div>
+          <h2 className="text-sm font-semibold text-zinc-500 mb-2">오늘의 실시간 지표 <span className="text-[11px] text-zinc-400 font-normal">(일일 데이터)</span></h2>
+        </div>
         <div className="grid grid-cols-2 gap-3">
           <StatCard
             label="방문자"
